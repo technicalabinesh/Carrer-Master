@@ -1,4 +1,4 @@
-# -Career-Master
+# Career Master
 🚀 Career Master Pro Your Complete AI-Powered Career Development Ecosystem  for Career Success
 
 # 🚀 AI-Powered Career Platform
