@@ -1,0 +1,7 @@
+gradio
+pandas
+google-generativeai
+plotly
+numpy
+SpeechRecognition
+pydub
