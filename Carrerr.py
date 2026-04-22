@@ -2832,7 +2832,6 @@ def create_career_chatbot_tab(career_ai, conversation_history):
         chatbot = gr.Chatbot(
             label=None,
             height=400,
-            type="messages",
             show_label=False
         )
         
