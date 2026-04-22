@@ -3,7 +3,7 @@ import pandas as pd
 import json
 import io
 import re
-import google.generativeai as genai
+from google import genai
 import plotly.graph_objects as go
 import random
 from datetime import datetime
@@ -711,8 +711,8 @@ class CareerData:
 # Gemini AI Integration with Speech Recognition
 class CareerMasterAI:
     def __init__(self, api_key):
-        genai.configure(api_key=api_key)
-        self.model = genai.GenerativeModel("models/gemma-3-4b-it")
+        self.client = genai.Client(api_key=api_key)
+        self.model_name = "models/gemma-3-4b-it"
         self.recognizer = sr.Recognizer()
     
     def analyze_resume(self, resume_text, job_description=""):
@@ -751,7 +751,7 @@ class CareerMasterAI:
         """
         
         try:
-            response = self.model.generate_content(prompt)
+            response = self.client.models.generate_content(model=self.model_name, contents=prompt)
             return response.text
         except Exception as e:
             return f"Error: {str(e)}"
@@ -778,7 +778,7 @@ class CareerMasterAI:
         """
         
         try:
-            response = self.model.generate_content(prompt)
+            response = self.client.models.generate_content(model=self.model_name, contents=prompt)
             return response.text
         except Exception as e:
             return f"Error: {str(e)}"
@@ -815,7 +815,7 @@ class CareerMasterAI:
         """
         
         try:
-            response = self.model.generate_content(prompt)
+            response = self.client.models.generate_content(model=self.model_name, contents=prompt)
             return response.text
         except Exception as e:
             return f"Error: {str(e)}"
@@ -851,7 +851,7 @@ class CareerMasterAI:
         """
         
         try:
-            response = self.model.generate_content(prompt)
+            response = self.client.models.generate_content(model=self.model_name, contents=prompt)
             return response.text
         except Exception as e:
             return f"Error: {str(e)}"
@@ -879,7 +879,7 @@ class CareerMasterAI:
         """
         
         try:
-            response = self.model.generate_content(prompt)
+            response = self.client.models.generate_content(model=self.model_name, contents=prompt)
             return response.text
         except Exception as e:
             return f"Error: {str(e)}"
@@ -918,7 +918,7 @@ class CareerMasterAI:
         """
         
         try:
-            response = self.model.generate_content(prompt)
+            response = self.client.models.generate_content(model=self.model_name, contents=prompt)
             return response.text
         except Exception as e:
             return f"Error: {str(e)}"
@@ -951,7 +951,7 @@ class CareerMasterAI:
         """
         
         try:
-            response = self.model.generate_content(prompt)
+            response = self.client.models.generate_content(model=self.model_name, contents=prompt)
             return response.text
         except Exception as e:
             return f"Error: {str(e)}"
@@ -995,7 +995,7 @@ class CareerMasterAI:
         """
         
         try:
-            response = self.model.generate_content(prompt)
+            response = self.client.models.generate_content(model=self.model_name, contents=prompt)
             return response.text
         except Exception as e:
             return f"Error: {str(e)}"
@@ -1021,7 +1021,7 @@ class CareerMasterAI:
         """
         
         try:
-            response = self.model.generate_content(prompt)
+            response = self.client.models.generate_content(model=self.model_name, contents=prompt)
             return response.text
         except Exception as e:
             return f"Error: {str(e)}"
@@ -1797,7 +1797,7 @@ p {
 
 # Create Gradio Interface
 def create_interface():
-    with gr.Blocks(theme=gr.themes.Soft(), css=custom_css, title="🚀 Career Master") as demo:
+    with gr.Blocks(title="🚀 Career Master") as demo:
         # Header
         gr.Markdown("""
         <div class="gr-header">
@@ -3300,5 +3300,7 @@ if __name__ == "__main__":
         server_port=7863,
         share=True,
         debug=True,
-        height=1200
+        height=1200,
+        theme=gr.themes.Soft(),
+        css=custom_css
     )
