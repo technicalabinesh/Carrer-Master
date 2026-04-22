@@ -1,3 +1,14 @@
+---
+title: Career Master
+emoji: 🚀
+colorFrom: blue
+colorTo: purple
+sdk: gradio
+sdk_version: 5.29.0
+app_file: app.py
+pinned: false
+---
+
 # Career Master
 🚀 Career Master Pro Your Complete AI-Powered Career Development Ecosystem  for Career Success
 
